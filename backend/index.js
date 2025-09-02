@@ -11,7 +11,7 @@ const chatRoutes = require('./routes/chat');
 const socketAuth = require('./middleware/socketAuth');
 const Message = require('./models/Message');
 const ChatRoom = require('./models/ChatRoom');
-const User = require('./models/user');
+const User = require('./models/User');
 const { uploadFile } = require('./config/supabase');
 
 const app = express();

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const User = require('../models/user');
+const User = require('../models/User');
 
 // @route   GET /api/users
 // @desc    Get all users for chat functionality
@@ -18,6 +18,31 @@ router.get('/', auth, async (req, res) => {
     res.status(500).json({ msg: 'Server error' });
   }
 });
+
+
+
+router.get('/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    // Find the user by ID
+    const walletAddress = await User.findById(userId).select('walletAddress');
+    if (!walletAddress) {
+      return res.status(404).json({ msg: 'User not found' });
+    }
+
+    // Return the wallet address
+    res.json({ walletAddress: walletAddress.walletAddress });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+
+
+        
+
+
 
 // @route   POST /api/users/contacts/add/:userId
 // @desc    Add a user to business associates/contacts

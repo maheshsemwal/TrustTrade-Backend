@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const auth = require('../middleware/auth');
 const ChatRoom = require('../models/ChatRoom');
 const Message = require('../models/Message');
-const User = require('../models/user');
+const User = require('../models/User');
 const { uploadFile } = require('../config/supabase');
 
 // @route   GET /api/chat/rooms
